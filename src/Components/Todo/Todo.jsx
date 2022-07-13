@@ -5,9 +5,7 @@ import { Container, Row, ListGroup } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import "./Todo.scss";
 export default function Todo() {
-
-
-    //set list from local storage:
+  //set list from local storage:
 
   const [list, setList] = useState(() => {
     const savedTodos = localStorage.getItem("list");
@@ -18,7 +16,6 @@ export default function Todo() {
       return [];
     }
   });
-  
 
   const [texInput, setTextInput] = useState({});
 
@@ -48,8 +45,6 @@ export default function Todo() {
     setList(newlist);
   };
 
-  console.log(list);
-
   const handleChangeCheckbox = (itemlist) => {
     const newTodoList = list.map((item) => {
       if (item.id === itemlist.id) {
@@ -59,7 +54,6 @@ export default function Todo() {
       return item;
     });
     setList(newTodoList);
-    console.log(list);
   };
 
   return (
@@ -70,18 +64,21 @@ export default function Todo() {
         handlesubmit={handleSubmit}
         Value={texInput.value}
       />
-
-      <ListGroup className="list">
-        {list.map((item) => (
-          <TodoList
-            done={item.done}
-            key={item.id}
-            title={item.value}
-            remove={() => removeTodo(item)}
-            handleChange={() => handleChangeCheckbox(item)}
-          />
-        ))}
-      </ListGroup>
+      {list.length ? (
+        <ListGroup className="list">
+          {list.map((item) => (
+            <TodoList
+              done={item.done}
+              key={item.id}
+              title={item.value}
+              remove={() => removeTodo(item)}
+              handleChange={() => handleChangeCheckbox(item)}
+            />
+          ))}
+        </ListGroup>
+      ) : (
+        <span className="nothing">There is nothing yet!</span>
+      )}
     </Container>
   );
 }

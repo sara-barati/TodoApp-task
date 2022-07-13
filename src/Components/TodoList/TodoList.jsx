@@ -1,19 +1,22 @@
 import React from "react";
+import "./TodoList.scss";
 import { ListGroup, Row, Col } from "react-bootstrap";
-export default function TodoList({ remove, title,handleChange }) {
-
+export default function TodoList({ remove, title, handleChange, done }) {
   return (
     <ListGroup.Item>
-        <Row>  
-      
-       
- 
-      
-      <Col xs={1} style={{ textDecoration:" line-through"}} ><input   type="checkbox" onChange={handleChange}/></Col>
-      <Col xs={10} style={{ textDecoration:" line-through"}} > {title}</Col>
-      <Col xs={1}> <button onClick={remove}> <span className="icon-trash"> </span></button></Col>
-    </Row>
-      </ListGroup.Item>
-      
+      <Row>
+        <Col xs={1}>
+          <input type="checkbox" onChange={handleChange} />
+        </Col>
+        <Col xs={10} className={done ? "doneTrue" : "false"}>
+          {title}
+        </Col>
+        <Col xs={1}>
+          <button onClick={remove}>
+            <span className="icon-trash"> </span>
+          </button>
+        </Col>
+      </Row>
+    </ListGroup.Item>
   );
 }

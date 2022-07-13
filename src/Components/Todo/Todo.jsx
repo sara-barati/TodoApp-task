@@ -50,6 +50,7 @@ export default function Todo() {
       <ListGroup>
         {list.map((item) => (
           <TodoList
+            done={item.done}
             key={item.id}
             title={item.value}
             remove={() => removeTodo(item)}

@@ -6,21 +6,22 @@ export default function TodoList({ remove, title, handleChange, done }) {
   return (
     <ListGroup.Item className="listItem">
       <Row>
-        <Col xs={1}>
+        <Col>
           <span id="checkbox">
             <input
               id="checkbox-element"
               type="checkbox"
               onChange={handleChange}
+              className={done ? "checked" : "no"}
             />
             <Icon className="icon-check" icon="mdi:check" />
           </span>
         
         </Col>
-        <Col xs={10} className={done ? "doneTrue" : "false"}>
+        <Col md={9} xs={6} className={done ? "doneTrue" : "false"}>
           {title}
         </Col>
-        <Col xs={1} className="col">
+        <Col className="col">
           <button onClick={remove} className="button-trash">
           <Icon icon="ci:trash-empty" className="trash" />
           </button>

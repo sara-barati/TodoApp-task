@@ -2,11 +2,30 @@ import React from "react";
 import TodoForm from "../TodoForm/TodoForm";
 import TodoList from "../TodoList/TodoList";
 import { Container, Row, ListGroup } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Todo.scss";
 export default function Todo() {
-  const [list, setList] = useState([]);
+
+
+    //set list from local storage:
+
+  const [list, setList] = useState(() => {
+    const savedTodos = localStorage.getItem("list");
+
+    if (savedTodos) {
+      return JSON.parse(savedTodos);
+    } else {
+      return [];
+    }
+  });
+  
+
   const [texInput, setTextInput] = useState({});
+
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(list));
+  }, [list]);
+
   const handleChande = (e) => {
     const valueinput = e.target.value;
     setTextInput({
@@ -15,6 +34,7 @@ export default function Todo() {
       id: Math.floor(Math.random() * 1000),
     });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (texInput.value) {
@@ -27,7 +47,9 @@ export default function Todo() {
     const newlist = list.filter((i) => i.value !== item.value);
     setList(newlist);
   };
+
   console.log(list);
+
   const handleChangeCheckbox = (itemlist) => {
     const newTodoList = list.map((item) => {
       if (item.id === itemlist.id) {
@@ -39,9 +61,11 @@ export default function Todo() {
     setList(newTodoList);
     console.log(list);
   };
+
   return (
     <Container className="container">
       <TodoForm
+        className="form"
         handlechange={handleChande}
         handlesubmit={handleSubmit}
         Value={texInput.value}
@@ -54,7 +78,7 @@ export default function Todo() {
             key={item.id}
             title={item.value}
             remove={() => removeTodo(item)}
-            handleChange={()=>handleChangeCheckbox(item)}
+            handleChange={() => handleChangeCheckbox(item)}
           />
         ))}
       </ListGroup>

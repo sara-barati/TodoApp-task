@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
-import "./TodoForm.scss"
+import "./TodoForm.scss";
 
 export default function TodoForm({ handlechange, handlesubmit, Value }) {
   return (
@@ -8,12 +8,16 @@ export default function TodoForm({ handlechange, handlesubmit, Value }) {
       <Form.Control
         onChange={handlechange}
         value={Value}
-        className="form mt-sm-3 mt-md-8"
+        className="form1 mt-sm-3 mt-md-8"
         type="text"
         size="sm"
         placeholder="Type here..."
       />
-      <Button onClick={handlesubmit} className="button mt-sm-3 mt-md-8" variant="light">
+      <Button
+        onClick={handlesubmit}
+        className="button mt-sm-3 mt-md-8"
+        variant="light"
+      >
         Add
       </Button>
     </Form>

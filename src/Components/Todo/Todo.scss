@@ -1,9 +1,25 @@
-.container{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    .list{
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-        border-radius: 11px;
+  .list {
+    width: 48vw;
+    margin: auto;
+    border-color: #797979;
+    border-radius: 11px;
+  }
+}
+@media (max-width: 750px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    .list {
+      width: 80vw;
+      margin: auto;
     }
+  }
+  .form {
+    width: 60vw;
+  }
 }

@@ -28,7 +28,17 @@ export default function Todo() {
     setList(newlist);
   };
   console.log(list);
+  const handleChangeCheckbox = (itemlist) => {
+    const newTodoList = list.map((item) => {
+      if (item.id === itemlist.id) {
+        return { ...item, done: !item.done };
+      }
 
+      return item;
+    });
+    setList(newTodoList);
+    console.log(list);
+  };
   return (
     <Container className="container">
       <TodoForm
@@ -43,6 +53,7 @@ export default function Todo() {
             key={item.id}
             title={item.value}
             remove={() => removeTodo(item)}
+            handleChange={()=>handleChangeCheckbox(item)}
           />
         ))}
       </ListGroup>

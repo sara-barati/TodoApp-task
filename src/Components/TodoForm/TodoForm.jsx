@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
-import "./TodoForm.scss";
+import "./TodoForm.scss"
 
 export default function TodoForm({ handlechange, handlesubmit, Value }) {
   return (

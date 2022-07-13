@@ -47,7 +47,7 @@ export default function Todo() {
         Value={texInput.value}
       />
 
-      <ListGroup>
+      <ListGroup className="list">
         {list.map((item) => (
           <TodoList
             done={item.done}
